@@ -14,8 +14,10 @@ class Plugin extends Base
     $this->helper->register('templateTitleHelper', '\Kanboard\Plugin\TemplateTitle\Helper\TemplateTitleHelper');
     
     //template
-    $this->template->setTemplateOverride('task_creation/show', 'templateTitle:task_creation/show');
-    $this->template->setTemplateOverride('task_modification/show', 'templateTitle:task_modification/show');
+    if (!file_exists('plugins/Group_assign')) {
+        $this->template->setTemplateOverride('task_creation/show', 'templateTitle:task_creation/show');
+        $this->template->setTemplateOverride('task_modification/show', 'templateTitle:task_modification/show');
+    }
     
     //java
     $this->hook->on('template:layout:js', array('template' => 'plugins/TemplateTitle/assets/js/template-title.js'));
