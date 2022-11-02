@@ -20,11 +20,11 @@ class TemplateTitleHelper extends TaskHelper
 
         if (! empty($templates)) {
             $html = '<div class="dropdown dropdown-smaller">';
-            $html .= '<a href="#" class="dropdown-menu dropdown-menu-link-icon"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i>'.t('Template for the task description').' <i class="fa fa-caret-down" aria-hidden="true"></i></a>';
-            $html .= '<ul>';
+            $html .= '<a href="#"  id="PredfinedDropdown" class="dropdown-menu dropdown-menu-link-icon"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i>'.t('Template for the task description').' <i class="fa fa-caret-down" aria-hidden="true"></i></a>';
+            $html .= '<ul class="predefined-template-list">';
 
             foreach ($templates as  $template) {
-                $html .= '<li>';
+                $html .= '<li id="TaskTemplate-'. $this->helper->text->e($template['id']) .'" class="predefined-template-item">';
                 $html .= '<a href="#" data-template-target="textarea[name=description]" data-template="'.$this->helper->text->e($template['description']).'" data-templatetitle-target="input[name=title]" data-templatetitle="'.$this->helper->text->e($template['title']).'" class="js-template-title">';
                 //$html .= '<a href="#" data-template-target="textarea[name=description]" data-template="'.$this->helper->text->e($template['description']).'" class="js-template">';
                 //$html .= '<a href="#" data-template-target="input[name=title]" data-template="'.$this->helper->text->e($template['title']).'" class="js-template-title">';
