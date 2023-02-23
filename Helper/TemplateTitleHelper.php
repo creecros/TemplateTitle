@@ -25,7 +25,15 @@ class TemplateTitleHelper extends TaskHelper
 
             foreach ($templates as  $template) {
                 $html .= '<li id="TaskTemplate-'. $this->helper->text->e($template['id']) .'" class="predefined-template-item">';
-                $html .= '<a href="#" data-template-target="textarea[name=description]" data-template="'.$this->helper->text->e($template['description']).'" data-templatetitle-target="input[name=title]" data-templatetitle="'.$this->helper->text->e($template['title']).'" class="js-template-title">';
+                if (file_exists('plugins/TemplateManager')) {
+                    $html .= '<a href="#" data-template-target="textarea[name=description]" data-template="'. $this->helper->text->e($template['description']) .'" data-templatetitle-target="input[name=title]" data-templatetitle="'. $this->helper->text->e($template['title']) .'" class="js-template-title" ';
+                    if (!empty($template['note'])) {
+                        $html .= 'data-tooltip="'. $this->helper->text->e($template['note']) .'"';
+                    };
+                    $html .= '>';
+                } else {
+                    $html .= '<a href="#" data-template-target="textarea[name=description]" data-template="'. $this->helper->text->e($template['description']) .'" data-templatetitle-target="input[name=title]" data-templatetitle="'. $this->helper->text->e($template['title']) .'" class="js-template-title">';
+                }
                 //$html .= '<a href="#" data-template-target="textarea[name=description]" data-template="'.$this->helper->text->e($template['description']).'" class="js-template">';
                 //$html .= '<a href="#" data-template-target="input[name=title]" data-template="'.$this->helper->text->e($template['title']).'" class="js-template-title">';
                 $html .= $this->helper->text->e($template['title']);
